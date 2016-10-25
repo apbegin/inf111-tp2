@@ -1,6 +1,6 @@
 /**
  * Classe utilitaire qui permet de sauvegarder dans un fichier binaire ou texte.
- * Elle petmer aussi de de récupérer une boite.
+ * Elle petmer aussi de de rï¿½cupï¿½rer une boite.
  */
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,27 +15,37 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class UtilitaireFichier {
 
-	// Permet d'écrire dans un fichier texte en colonne et l'ouvrir dans Excel.
-	// Il suffit d'écrire un TAB pour changer de colonne.
+	// Permet d'ï¿½crire dans un fichier texte en colonne et l'ouvrir dans Excel.
+	// Il suffit d'ï¿½crire un TAB pour changer de colonne.
 	private static final String TAB = "\t";
 
 	/**
-	 * Sauvegarde la boîte dans un fichier texte dont on reçoit le nom.
+	 * Sauvegarde la boï¿½te dans un fichier texte dont on reï¿½oit le nom.
 	 * 
 	 */
 	public static void sauvegarderDsFichierTexte(Boite boite, String nomFic){
+		
+		File fichier = new File(nomFic);
+		try {
+			FileInputStream write = new FileInputStream(fichier);
+			
+		
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	
 
 	/**
-	 * Sauvegarde la boîte dans le fichier fichier binaire avec le nom reçu.
+	 * Sauvegarde la boï¿½te dans le fichier fichier binaire avec le nom reï¿½u.
 	 * 
-	 * On présume le nom de fichier valide.
+	 * On prï¿½sume le nom de fichier valide.
 	 * 
-	 * @param nomFic où sauvegarder la boîte.
-	 * @param boite La boîte à sauvegarder.
+	 * @param nomFic oï¿½ sauvegarder la boï¿½te.
+	 * @param boite La boï¿½te ï¿½ sauvegarder.
 	 */
 	public static void sauvegarderBoite(Boite boite, String nomFic){
 
@@ -44,13 +54,13 @@ public class UtilitaireFichier {
 	}
 	
 	/**
-	 * Ouvre le fichier dont le nom correspond à celui reçu.
+	 * Ouvre le fichier dont le nom correspond ï¿½ celui reï¿½u.
 	 * 
-	 * Exception : Le fichier doit contenir une boîte sauvegarder par
-	 * la méthode sauvegarderBoite.
+	 * Exception : Le fichier doit contenir une boï¿½te sauvegarder par
+	 * la mï¿½thode sauvegarderBoite.
 	 * 
-	 * @param nomFic Le nom du fichier à ouvrir
-	 * @return La boîte contenu dans le fichier.
+	 * @param nomFic Le nom du fichier ï¿½ ouvrir
+	 * @return La boï¿½te contenu dans le fichier.
 	 */
 	public static Boite recupererBoite(String nomFic){
 

@@ -1,19 +1,19 @@
 import java.io.Serializable;
 
 /*
-	* Module qui permet la gestion d'une boîte électrique
+	* Module qui permet la gestion d'une boï¿½te ï¿½lectrique
 	* avec disjoncteurs.
 	*
-	* La boite doit d'abord être initialisée au nombre d'ampères voulus 
+	* La boite doit d'abord ï¿½tre initialisï¿½e au nombre d'ampï¿½res voulus 
 	* ainsi que son nombre de disjoncteurs maximum possibles.
 	*
-	* Implémente l'interface Serializable pour la sauvegarde
+	* Implï¿½mente l'interface Serializable pour la sauvegarde
 	* dans un fichier binaire. 
 	*/
 public class Boite implements Serializable{
 	
 	/**
-	 * Enlève un "warning". On ne gère pas les versions.
+	 * Enlï¿½ve un "warning". On ne gï¿½re pas les versions.
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -27,7 +27,7 @@ public class Boite implements Serializable{
 	public static final int NB_LIGNES_MAX  = 
 			MAX_DISJONCTEURS/NB_COLONNES;
 	
-	// Pour le remplissage de départ.
+	// Pour le remplissage de dï¿½part.
     public static final double POURC_REMPLI = 0.6;
 	public static final double POURC_TENSION_ENTREE = .3;
 	
@@ -39,42 +39,58 @@ public class Boite implements Serializable{
 	 *********************************/
 	private int maxAmperes;
 	
-	// Le tableau est 2D mais il est à l'envers de la réalité (ligne-colonne).
-	// Toutes les méthodes qui nécessitent la position, reçoivent (colonne-ligne).  
+	// Le tableau est 2D mais il est ï¿½ l'envers de la rï¿½alitï¿½ (ligne-colonne).
+	// Toutes les mï¿½thodes qui nï¿½cessitent la position, reï¿½oivent (colonne-ligne).  
 	private Disjoncteur[][] tabDisjoncteurs;	
 	private int nbDisjoncteurs;
 	
-	// On déduit les disjoncteurs TENSION_ENTREE par
+	// On dï¿½duit les disjoncteurs TENSION_ENTREE par
 	// nbDisjoncteurs - nbDisjoncteursPhase  
 	private int nbDisjoncteursPhase;
 	
 	
-	// Vous devez écrire les méthodes manquantes.
+	// Vous devez ï¿½crire les mï¿½thodes manquantes.
 	
 	public Boite(int max_amperes) {
-		// TODO Auto-generated constructor stub
+		this.nbDisjoncteurs=0;
+		this.nbDisjoncteursPhase=0;
+		this.maxAmperes = max_amperes;
+		for(int i=0; i < nbDisjoncteurs; i++){
+			for(int j=0; j < NB_COLONNES; j++){
+				tabDisjoncteurs[i][j] = null;
+			}
+		}
 	}
 
 	/**
-	 * @return La consommation totale en Watts de la boîte.
+	 * @return La consommation totale en Watts de la boï¿½te.
 	 */
 	public double getConsommationTotalEnWatt(){
 
-	    double  total = 0;
+		double total=0;
+		
+		for(int i=0; i < tabDisjoncteurs.length; i++ ){
+			for(int j=0; j < tabDisjoncteurs[i].length; j++){
+				total += tabDisjoncteurs[i][j].getPuissanceEnWatt();
+			}
+		}
 	    return total;
 
 	}
 
 	/**
-	 * @return la puissance totale consommée sur les disjoncteurs. 
+	 * @return la puissance totale consommï¿½e sur les disjoncteurs. 
 	 */
 	public double puissance_total_boite(){
+		double puissanceTotal=0;
 		
-	    double total = 0;
-
-
-	    return total;
-
+		for(int i=0; i < tabDisjoncteurs.length; i++ ){
+			for(int j=0; j < tabDisjoncteurs[i].length; j++){
+				puissanceTotal += tabDisjoncteurs[i][j].totalAmpere() * 
+						tabDisjoncteurs[i][j].getTension();
+			}
+		}
+		return puissanceTotal;
 	}
 
 	/*
@@ -83,7 +99,8 @@ public class Boite implements Serializable{
 	 */
 	public double temps_ups(){
 
-	    return 0;
+		return (this.getMaxAmperes()*Disjoncteur.TENSION_ENTREE)/this.getConsommationTotalEnWatt();
+	    
 	}
 
 	public boolean getEmplacementEncoreDisponible() {
@@ -92,59 +109,68 @@ public class Boite implements Serializable{
 	}
 
 	public Disjoncteur getDisjoncteur(int j, int i) {
-		// TODO Auto-generated method stub
-		return new Disjoncteur();
+		
+		return tabDisjoncteurs[j][i];
 	}
 
 
 	public int getMaxAmperes() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.maxAmperes;
 	}
 
 	public void remplirAlea() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 
+	/**
+	 * 
+	 * @return un objet Coord qui contient la ligne et colonne
+	 * de la position vide ou avec valeur 0,0 si aucune vide.
+	 */
 	public Coord getEmplacementDisponible() {
-		// TODO Auto-generated method stub
-		return null;
+		
+
+		for(int i=0; i < tabDisjoncteurs.length; i++ ){
+			for(int j=0; j < tabDisjoncteurs[i].length; j++){
+				
+				if(getEmplacementEstVide(j, i)){
+					return new Coord(j,i);
+				}
+			}
+		}
+		return new Coord();
+		
 	}
 
 	public void ajouterDisjoncteur(int colonne, int ligne, Disjoncteur d) {
-		// TODO Auto-generated method stub
+		tabDisjoncteurs[colonne][ligne]=d;
 		
 	}
 
 	public void ajouterDemande(int i, int j, double demande) {
-		// TODO Auto-generated method stub
-		
+		tabDisjoncteurs[j][i].AjoutDemande(demande);
 	}
 
 	public void retirerPuissance(int i, int j, double demande) {
-		// TODO Auto-generated method stub
-		
+		tabDisjoncteurs[j][i].RetirerPuissance(demande);
 	}
 
 	public int getNbDisjoncteurs() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.nbDisjoncteurs;
 	}
 
 	public int getNbDisjoncteursPhase() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.nbDisjoncteursPhase;
 	}
 
 	public int getNbDisjoncteursEntree() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.nbDisjoncteurs - this.nbDisjoncteursPhase;
 	}
 
 	public boolean getEmplacementEstVide(int colonne, int ligne) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.tabDisjoncteurs[colonne][ligne] != null;
 	}
 }

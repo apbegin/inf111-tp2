@@ -1,3 +1,6 @@
+import java.awt.Dialog;
+import java.text.MessageFormat;
+
 import javax.swing.JOptionPane;
 
 public class UtilitaireEntreeSortie {
@@ -8,14 +11,14 @@ public class UtilitaireEntreeSortie {
 	public static int tensionValide() {
 		
 		/*
-		 * Stratégie : On utilise JOptionPane pour la saisie et les constantes 
-		 * prévues.
+		 * Stratï¿½gie : On utilise JOptionPane pour la saisie et les constantes 
+		 * prï¿½vues.
 		 */
 		
 		// JOptionPane retourne un String.
 		String tension;
 
-		// Utilisé pour la validation avec les String.
+		// Utilisï¿½ pour la validation avec les String.
 		String tensionEntree =  String.valueOf(Disjoncteur.TENSION_ENTREE) ;
 		String tensionPhase =  String.valueOf(Disjoncteur.TENSION_PHASE) ;
 
@@ -37,13 +40,34 @@ public class UtilitaireEntreeSortie {
 
 
 	/*
-	 * Fonction locale pour saisir et valider l'ampérage d'un disjoncteur. 
+	 * Fonction locale pour saisir et valider l'ampï¿½rage d'un disjoncteur. 
 	 */
 	public static int ampereValide() {
-
-		// À Écrire
+		String ampere;
+		boolean valide=false;
+	
+		do{
+			ampere = 
+					JOptionPane.showInputDialog("Entrez un ampere valide " + 
+							Disjoncteur.CHAINE_TENSION_PERMISE);
+			for(int i=0; i< Disjoncteur.AMPERAGES_PERMIS.length; i++){
+				try{
+					if(Disjoncteur.AMPERAGES_PERMIS[i] == Integer.parseInt(ampere))
+						valide=true;
+				}
+				catch(NumberFormatException e){
+					JOptionPane.showMessageDialog(null,
+							"Veuillez saisir une valeur numÃ©rique", "erreur de saisie", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+			
+		}while(ampere !=null && !valide);
 		
-		return 0;
+		return (ampere == null)?
+				Disjoncteur.AMPERAGES_PERMIS[UtilitaireMath.entierAlea(0,
+				Disjoncteur.AMPERAGES_PERMIS.length-1)]:
+				Integer.parseInt(ampere);
+		
 	}
 
 	/**
@@ -51,7 +75,7 @@ public class UtilitaireEntreeSortie {
 	 * si l'utilisateur annule.
 	 * 
 	 * 
-	 * @param msgSollic Le message affiché.
+	 * @param msgSollic Le message affichï¿½.
 	 * @param min La plus petite valeur permise.
 	 * @param max La plus grande valeur permise.
 	 * 
@@ -61,7 +85,7 @@ public class UtilitaireEntreeSortie {
 
 		String entier = null;
 
-		// Version String des valeurs reçues.
+		// Version String des valeurs reï¿½ues.
 		String minString =  String.valueOf(min) ;
 		String maxString =  String.valueOf(max) ;
 
@@ -70,7 +94,7 @@ public class UtilitaireEntreeSortie {
 					JOptionPane.showInputDialog(msgSollic + 
 							" entre " + minString + " et " + maxString);
 
-			// Vérifier si c'est convertissable en entier.
+			// Vï¿½rifier si c'est convertissable en entier.
 			try{
 				
 				if(entier != null){
@@ -91,11 +115,11 @@ public class UtilitaireEntreeSortie {
 	}
 
 	/**
-	 * Saisit et valide un réel entre min et max.  
+	 * Saisit et valide un rï¿½el entre min et max.  
 	 * La fonction retourne Double.NaN si l'utilisateur annule.
 	 * 
 	 * 
-	 * @param msgSollic Le message affiché.
+	 * @param msgSollic Le message affichï¿½.
 	 * @param min La plus petite valeur permise.
 	 * @param max La plus grande valeur permise.
 	 * 
@@ -107,7 +131,7 @@ public class UtilitaireEntreeSortie {
 
 		reel = JOptionPane.showInputDialog(msgSollic);
 
-		// Vérifier si c'est convertissable en réel.
+		// Vï¿½rifier si c'est convertissable en rï¿½el.
 		try{
 
 			if(reel != null){
