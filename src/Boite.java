@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Random;
 
 /*
 	* Module qui permet la gestion d'une bo�te �lectrique
@@ -55,11 +56,8 @@ public class Boite implements Serializable{
 		this.nbDisjoncteurs=0;
 		this.nbDisjoncteursPhase=0;
 		this.maxAmperes = max_amperes;
-		for(int i=0; i < nbDisjoncteurs; i++){
-			for(int j=0; j < NB_COLONNES; j++){
-				tabDisjoncteurs[i][j] = null;
-			}
-		}
+		this.tabDisjoncteurs = new Disjoncteur[NB_COLONNES][NB_LIGNES_MAX];
+		
 	}
 
 	/**
@@ -68,26 +66,27 @@ public class Boite implements Serializable{
 	public double getConsommationTotalEnWatt(){
 
 		double total=0;
-		
-		for(int i=0; i < tabDisjoncteurs.length; i++ ){
-			for(int j=0; j < tabDisjoncteurs[i].length; j++){
-				total += tabDisjoncteurs[i][j].getPuissanceEnWatt();
+		int ligne=0;
+		for(int i=0; i < NB_COLONNES; i++ ){
+			while(ligne<NB_LIGNES_MAX && !getEmplacementEstVide(i, ligne)){
+				total += tabDisjoncteurs[i][ligne].getPuissanceEnWatt();
+				ligne++;
 			}
 		}
-	    return total;
-
+		return total;
 	}
 
 	/**
-	 * @return la puissance totale consomm�e sur les disjoncteurs. 
+	 * @return la puissance totale consommée sur les disjoncteurs. 
 	 */
 	public double puissance_total_boite(){
 		double puissanceTotal=0;
 		
-		for(int i=0; i < tabDisjoncteurs.length; i++ ){
-			for(int j=0; j < tabDisjoncteurs[i].length; j++){
-				puissanceTotal += tabDisjoncteurs[i][j].totalAmpere() * 
-						tabDisjoncteurs[i][j].getTension();
+		int ligne=0;
+		for(int i=0; i < NB_COLONNES; i++ ){
+			while(ligne<NB_LIGNES_MAX && !getEmplacementEstVide(i, ligne)){
+				puissanceTotal += tabDisjoncteurs[i][ligne].totalAmpere() * 
+						tabDisjoncteurs[i][ligne].getTension();
 			}
 		}
 		return puissanceTotal;
@@ -99,7 +98,8 @@ public class Boite implements Serializable{
 	 */
 	public double temps_ups(){
 
-		return (this.getMaxAmperes()*Disjoncteur.TENSION_ENTREE)/this.getConsommationTotalEnWatt();
+		return (this.getMaxAmperes()*Disjoncteur.TENSION_ENTREE)
+				/this.getConsommationTotalEnWatt();
 	    
 	}
 
@@ -108,9 +108,8 @@ public class Boite implements Serializable{
 		return false;
 	}
 
-	public Disjoncteur getDisjoncteur(int j, int i) {
-		
-		return tabDisjoncteurs[j][i];
+	public Disjoncteur getDisjoncteur(int i, int j) {
+		return tabDisjoncteurs[i][j];
 	}
 
 
@@ -120,7 +119,16 @@ public class Boite implements Serializable{
 	}
 
 	public void remplirAlea() {
-		
+		Random rnd = new Random(); 
+		int ampere,tension =0;
+		for(int i=0; i<NB_COLONNES; i++){
+			for(int j=0; j<NB_LIGNES_MAX; j++){
+				ampere = Disjoncteur.AMPERAGES_PERMIS[rnd.nextInt(nbAmperage)];
+				tension = (rnd.nextInt(1)==0:Disjoncteur.Ten[rnd.nextInt(nbAmperage)]
+				this.ajouterDisjoncteur(i, j, new Disjoncteur(
+						,Disjoncteur.TENSION_PHASE));
+			}
+		}
 		
 	}
 
@@ -133,29 +141,29 @@ public class Boite implements Serializable{
 	public Coord getEmplacementDisponible() {
 		
 
-		for(int i=0; i < tabDisjoncteurs.length; i++ ){
+		for(int i=0; i < NB_COLONNES; i++ ){
 			for(int j=0; j < tabDisjoncteurs[i].length; j++){
 				
-				if(getEmplacementEstVide(j, i)){
+				if(getEmplacementEstVide(i, j)){
 					return new Coord(j,i);
 				}
 			}
 		}
 		return new Coord();
-		
 	}
 
 	public void ajouterDisjoncteur(int colonne, int ligne, Disjoncteur d) {
-		tabDisjoncteurs[colonne][ligne]=d;
+		Coord c = this.getEmplacementDisponible();
+		tabDisjoncteurs[c.colonne][c.ligne]=d;
 		
 	}
 
 	public void ajouterDemande(int i, int j, double demande) {
-		tabDisjoncteurs[j][i].AjoutDemande(demande);
+		tabDisjoncteurs[i][j].AjoutDemande(demande);
 	}
 
 	public void retirerPuissance(int i, int j, double demande) {
-		tabDisjoncteurs[j][i].RetirerPuissance(demande);
+		tabDisjoncteurs[i][j].RetirerPuissance(demande);
 	}
 
 	public int getNbDisjoncteurs() {

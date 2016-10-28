@@ -1,6 +1,3 @@
-import java.awt.Dialog;
-import java.text.MessageFormat;
-
 import javax.swing.JOptionPane;
 
 public class UtilitaireEntreeSortie {
@@ -131,7 +128,7 @@ public class UtilitaireEntreeSortie {
 
 		reel = JOptionPane.showInputDialog(msgSollic);
 
-		// V�rifier si c'est convertissable en r�el.
+		// Vérifier si c'est convertissable en réel.
 		try{
 
 			if(reel != null){

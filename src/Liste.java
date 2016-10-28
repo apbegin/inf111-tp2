@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * Classe qui impl�mente une liste
  * avec une position courante.  En tout temps les op�rations
