@@ -1,5 +1,11 @@
 import javax.swing.JOptionPane;
 
+
+/**
+ * 
+ * @author Antoine Proulx-Bégin
+ *
+ */
 public class UtilitaireEntreeSortie {
 
 	/*
@@ -8,14 +14,14 @@ public class UtilitaireEntreeSortie {
 	public static int tensionValide() {
 		
 		/*
-		 * Stratï¿½gie : On utilise JOptionPane pour la saisie et les constantes 
-		 * prï¿½vues.
+		 * Stratégie : On utilise JOptionPane pour la saisie et les constantes 
+		 * prévues.
 		 */
 		
 		// JOptionPane retourne un String.
 		String tension;
 
-		// Utilisï¿½ pour la validation avec les String.
+		// Utilisé pour la validation avec les String.
 		String tensionEntree =  String.valueOf(Disjoncteur.TENSION_ENTREE) ;
 		String tensionPhase =  String.valueOf(Disjoncteur.TENSION_PHASE) ;
 
@@ -37,7 +43,7 @@ public class UtilitaireEntreeSortie {
 
 
 	/*
-	 * Fonction locale pour saisir et valider l'ampï¿½rage d'un disjoncteur. 
+	 * Fonction locale pour saisir et valider l'ampérage d'un disjoncteur. 
 	 */
 	public static int ampereValide() {
 		String ampere;
@@ -54,7 +60,7 @@ public class UtilitaireEntreeSortie {
 				}
 				catch(NumberFormatException e){
 					JOptionPane.showMessageDialog(null,
-							"Veuillez saisir une valeur numÃ©rique", "erreur de saisie", JOptionPane.INFORMATION_MESSAGE);
+							"Veuillez saisir une valeur numérique", "erreur de saisie", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 			
@@ -82,7 +88,7 @@ public class UtilitaireEntreeSortie {
 
 		String entier = null;
 
-		// Version String des valeurs reï¿½ues.
+		// Version String des valeurs reçues.
 		String minString =  String.valueOf(min) ;
 		String maxString =  String.valueOf(max) ;
 
@@ -91,7 +97,7 @@ public class UtilitaireEntreeSortie {
 					JOptionPane.showInputDialog(msgSollic + 
 							" entre " + minString + " et " + maxString);
 
-			// Vï¿½rifier si c'est convertissable en entier.
+			// Vérifier si c'est convertissable en entier.
 			try{
 				
 				if(entier != null){
@@ -112,11 +118,11 @@ public class UtilitaireEntreeSortie {
 	}
 
 	/**
-	 * Saisit et valide un rï¿½el entre min et max.  
+	 * Saisit et valide un réel entre min et max.  
 	 * La fonction retourne Double.NaN si l'utilisateur annule.
 	 * 
 	 * 
-	 * @param msgSollic Le message affichï¿½.
+	 * @param msgSollic Le message affiché.
 	 * @param min La plus petite valeur permise.
 	 * @param max La plus grande valeur permise.
 	 * 

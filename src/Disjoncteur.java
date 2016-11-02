@@ -1,38 +1,41 @@
 import java.io.Serializable;
 
-/*
+/**
 * Classe qui regroupe tout qui concerne un
 * disjoncteur dans le projet.
 *
 * On y retrouve les constantes et les  sous-programmes
-* liï¿½ ï¿½ un disjoncteur.
+* lié à un disjoncteur.
 * 
-* Implï¿½mente l'interface Serializable pour la sauvegarde
+* Implémente l'interface Serializable pour la sauvegarde
 * dans un fichier binaire. 
+* 
+* 
+* @author Antoine Proulx-Bégin
 */
 public class Disjoncteur implements Serializable{
 
 	/**
-	 * Enlï¿½ve un "warning". On ne gï¿½re pas les versions.
+	 * Enlève un "warning". On ne gère pas les versions.
 	 */
 	private static final long serialVersionUID = 1L;
 	
 
 	
-    // ï¿½tat possible d'un disjoncteur.
+    // état possible d'un disjoncteur.
 	public static final int ALLUME = 1;
 	public static final int ETEINT = 0;
 	
-	// Choix d'ampï¿½rages possibles.
+	// Choix d'ampérages possibles.
 	private static final int MIN_AMPERAGE = 15;
 	private static final int MAX_AMPERAGE = 60;
 	
 
-	// Tous les ampï¿½rages permis dans un tableau.  
+	// Tous les ampérages permis dans un tableau.  
 	public static final int AMPERAGES_PERMIS[] =
 		                         {MIN_AMPERAGE, 20, 40, 50, MAX_AMPERAGE};
 
-	// Construction d'une chaï¿½ne avec les ampï¿½rages permis. Sert ï¿½ valider.
+	// Construction d'une chaîne avec les ampérages permis. Sert à valider.
 	public static final  String CHAINE_AMPERAGE_PERMIS = 
 			"15/20/40/50/60";
 	
@@ -40,11 +43,11 @@ public class Disjoncteur implements Serializable{
 	public static final int TENSION_ENTREE = 240;
 	public static final int TENSION_PHASE = 120;
 
-	// Construction d'une chaï¿½ne avec les tensions permises. Sert ï¿½ valider.
+	// Construction d'une chaîne avec les tensions permises. Sert à valider.
 	public static final  String CHAINE_TENSION_PERMISE = 
 			"120/240";
 	
-	// Pourcentage de la puissance MAX tolÃ©rÃ©
+	// Pourcentage de la puissance MAX toléré
 	public static final double POURCENTAGE_PUISSANCE_MAX = 0.80d;
 	
 	/******************************
@@ -67,7 +70,7 @@ public class Disjoncteur implements Serializable{
 	public Disjoncteur(double ampere, double tension){
 		this.ampere=ampere;
 		this.tension=tension;
-		this.etat=ETEINT;
+		this.etat = ETEINT;
 		this.demandeDuCircuit = new Liste();
 	}
 
@@ -113,16 +116,15 @@ public class Disjoncteur implements Serializable{
 			
 			if(this.totalAmpere() < this.getAmpere()*
 					POURCENTAGE_PUISSANCE_MAX){
-				
 				this.etat = ALLUME;
 			}
 		}
 	}
 	
 	 /**
-	  * Calcul et retourne le nombre total d'ampere de la liste
-	  * garde la position de la liste Ã  la position suivante, pret pour
-	  * insÃ©rer un autre objet dans la liste.
+	  * Calcul et retourne le nombre total d'ampère de la liste
+	  * garde la position de la liste à la position suivante, prêt pour
+	  * insérer un autre objet dans la liste.
 	  * 
 	  * @return le nombre total d'ampere dans la liste
 	  */
@@ -146,7 +148,7 @@ public class Disjoncteur implements Serializable{
 	  * 
 	  * @param nbAmpere
 	  * @return true si une demande de "nbAmpere" existe dans la liste,
-	  *  garde la position trouver Ã  la position courante.
+	  *  garde la position trouver à la position courante.
 	  *  
 	  * @return false si "nbAmpere" n'existe pas dans la liste.
 	  */

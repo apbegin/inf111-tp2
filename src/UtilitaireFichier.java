@@ -1,21 +1,23 @@
-/**
- * Classe utilitaire qui permet de sauvegarder dans un fichier binaire ou texte.
- * Elle petmer aussi de de rï¿½cupï¿½rer une boite.
- */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Classe utilitaire qui permet de sauvegarder dans un fichier binaire ou texte.
+ * Elle petmer aussi de de récupérer une boite.
+ * 
+ * @author Antoine Proulx-Bégin
+ */
 public class UtilitaireFichier {
 
-	// Permet d'Ã©crire dans un fichier texte en colonne et l'ouvrir dans Excel.
-	// Il suffit d'Ã©crire un TAB pour changer de colonne.
+	// Permet d'écrire dans un fichier texte en colonne et l'ouvrir dans Excel.
+	// Il suffit d'écrire un TAB pour changer de colonne.
 	private static final String TAB = "\t";
 
 	/**
-	 * Sauvegarde la boÃ®te dans un fichier texte dont on reÃ§oit le nom.
+	 * Sauvegarde la boîte dans un fichier texte dont on reçoit le nom.
 	 * 
 	 */
 	public static void sauvegarderDsFichierTexte(Boite boite, String nomFic){
@@ -23,8 +25,8 @@ public class UtilitaireFichier {
 			PrintWriter f = new PrintWriter(nomFic);
 			f.println("Position (colonne-ligne)"+TAB+
 					"Tension"+TAB+
-					"AmpÃ©rage utilisÃ© (W)"+TAB+
-					"Ratio dâ€™utilisation");
+					"Ampérage utilisé (W)"+TAB+
+					"Ratio d'utilisation");
 			int ligne=0;
 			for(int i=0; i < Boite.NB_COLONNES; i++){
 				while(ligne < Boite.NB_LIGNES_MAX ||
@@ -45,12 +47,12 @@ public class UtilitaireFichier {
 	
 
 	/**
-	 * Sauvegarde la boÃ®te dans le fichier fichier binaire avec le nom reÃ§u.
+	 * Sauvegarde la boîte dans le fichier fichier binaire avec le nom reçu.
 	 * 
-	 * On prÃ©sume le nom de fichier valide.
+	 * On présume le nom de fichier valide.
 	 * 
-	 * @param nomFic oÃ¹ sauvegarder la boÃ®te.
-	 * @param boite La boÃ®te Ã  sauvegarder.
+	 * @param nomFic à sauvegarder la boîte.
+	 * @param boite La boîte à  sauvegarder.
 	 */
 	public static void sauvegarderBoite(Boite boite, String nomFic){
 		try{
@@ -86,13 +88,13 @@ public class UtilitaireFichier {
 	}
 	
 	/**
-	 * Ouvre le fichier dont le nom correspond Ã  celui reÃ§u.
+	 * Ouvre le fichier dont le nom correspond à  celui reçu.
 	 * 
-	 * Exception : Le fichier doit contenir une boÃ®te sauvegarder par
-	 * la mÃ©thode sauvegarderBoite.
+	 * Exception : Le fichier doit contenir une boîte sauvegarder par
+	 * la méthode sauvegarderBoite.
 	 * 
-	 * @param nomFic Le nom du fichier Ã  ouvrir
-	 * @return La boÃ®te contenu dans le fichier.
+	 * @param nomFic Le nom du fichier à  ouvrir
+	 * @return La boîte contenu dans le fichier.
 	 */
 	public static Boite recupererBoite(String nomFic){
 

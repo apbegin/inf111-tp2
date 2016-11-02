@@ -1,53 +1,55 @@
+import java.util.Arrays;
+
 /**
- * Classe qui implï¿½mente une liste
- * avec une position courante.  En tout temps les opï¿½rations
- * se font par rapport ï¿½ la position courante qui fait partie intï¿½grante de la liste.
+ * Classe qui implémente une liste
+ * avec une position courante.  En tout temps les opérations
+ * se font par rapport à la position courante qui fait partie intégrante de la liste.
  *
- * Les mï¿½thodes pour dï¿½placer la position courante font partie de la classe.
+ * Les méthodes pour déplacer la position courante font partie de la classe.
  *
- * Pour l'insertion, la position courante est toujours sur l'objet ajoutï¿½.
- * Les mï¿½thodes de suppression ne sont pas implï¿½mentï¿½es
+ * Pour l'insertion, la position courante est toujours sur l'objet ajouté.
+ * Les méthodes de suppression ne sont pas implémentées
  *
- * On ne lï¿½ve aucune exception pour cet exemple.  Seul les exceptions systï¿½mes
- * seront levï¿½es s'il y a un problï¿½me.
+ * On ne lève aucune exception pour cet exemple.  Seul les exceptions systèmes
+ * seront levées s'il y a un problème.
  *
- * @author  <a href="mailto:pierre.belisle@etsmtl.ca">Pierre Bï¿½lisle</a>
+ * @author  <a href="mailto:pierre.belisle@etsmtl.ca">Pierre Bélisle</a>
  * @version A2016
  */
 public class Liste {
 
 	/*
-	 * STRATï¿½GIE : On garde une variable pour retenir  la position courante
-	 * et une pour le nombre d'ï¿½lï¿½ments qui est mise ï¿½ jour aprï¿½s chaque
+	 * STRATÉGIE : On garde une variable pour retenir  la position courante
+	 * et une pour le nombre d'éléments qui est mise à jour après chaque
 	 * insertion ou supression.
 	 *
-	 * L'implï¿½mentation est dans un tableau statique.
+	 * L'implémentation est dans un tableau statique.
 	 *
-	 * Les statï¿½gie pour chaque mï¿½thodes sont dï¿½crites dans leur commentaire
-	 * de stratï¿½gie respectf.
+	 * Les statégie pour chaque méthodes sont décrites dans leur commentaire
+	 * de stratégie respectf.
 	 */
 
-	//Nombre d'ï¿½lï¿½ments possibles au maximum par dï¿½faut
+	//Nombre d'éléments possibles au maximum par défaut
 	public static final int MAX_ELEMENTS = 100;
 
 	//La liste avec les objets
 	private Object [] liste;
 
-	 //La position oï¿½ sont effectuï¿½ les opï¿½ration.
+	 //La position où sont effectué les opération.
 	 private int positionCourante;
 
 
-	 //Maintenu ï¿½ jour aprï¿½s une insertion ou une suppresion.
+	 //Maintenu à jour après une insertion ou une suppresion.
 	 private int nbElements;
 
 
 	 /**
-	  * Crï¿½e une liste vide de MAX_ELEMENTS au maximum.
+	  * Crée une liste vide de MAX_ELEMENTS au maximum.
 	  */
 	 public Liste(){
 
 	    	/**
-	    	 * STRATï¿½GIE : On utilise le constructeur suivant (bonne pratique)
+	    	 * STRATÉGIE : On utilise le constructeur suivant (bonne pratique)
 	    	 */
 
 		      this(MAX_ELEMENTS);
@@ -55,12 +57,12 @@ public class Liste {
 	 }
 
 	 /**
-	  * Crï¿½e une liste vide de la taille fournie au maximum.
+	  * Crée une liste vide de la taille fournie au maximum.
 	  */
 	 public Liste(int taille){
 
 	    	/**
-	    	 * STRATï¿½GIE : On initialise explicitement les valeurs plutï¿½t que d'utiliser
+	    	 * STRATÉGIE : On initialise explicitement les valeurs plutôt que d'utiliser
 	    	 * l'initialisation automatique de l'environnement Eclipse.
 	    	 */
 
@@ -75,37 +77,37 @@ public class Liste {
 	 /**
 	  * Retourne si la liste est vide.
 	  *
-	  * Antï¿½cï¿½dent : Aucun.
+	  * Antécédent : Aucun.
 	  *
-	  * Consï¿½quent : Aucun.
+	  * Conséquent : Aucun.
 	  *
 	  * @return Si true la liste est vide et false autrement
 	  */
 	 public boolean estVide(){
 
 		 /*
-		  * STRATï¿½GIE : On retourne simplement l'ï¿½valuation boolï¿½enne de la
-		  *  comparaison du nombre d'ï¿½lï¿½ments avec 0.
+		  * STRATÉGIE : On retourne simplement l'évaluation booléenne de la
+		  *  comparaison du nombre d'éléments avec 0.
 		  */
 	     return nbElements == 0;
 	 }
 
 
-	 //LES Mï¿½THODES DE Dï¿½PLACEMENT
+	 //LES MÉTHODES DE DÉPLACEMENT
 	 /**
 	  * Passe la position courante au suivant dans la liste.
 	  *
-	  * Antï¿½cï¿½dent : Aucun.
+	  * Antécédent : Aucun.
 	  *
-	  * Consï¿½quent : La position est dï¿½placï¿½e sur l'ï¿½lï¿½ment suivant s'il existe.
-	  * Sinon position courante est laissï¿½e ï¿½ la fin
+	  * Conséquent : La position est déplacée sur l'élément suivant s'il existe.
+	  * Sinon position courante est laissée à la fin
  	  *
 	  */
 	 public void setPosSuivant() {
 
 
 		 /*
-		  * STRATï¿½GIE : Si c'est la fin, on ne dï¿½place pas, sinon on passe au suivant.
+		  * STRATÉGIE : Si c'est la fin, on ne déplace pas, sinon on passe au suivant.
 		  */
 		 if(positionCourante != liste.length - 1){
 
@@ -117,14 +119,14 @@ public class Liste {
 
 
 	 /**
-	  * Met la position courante au dï¿½but de la  liste.
+	  * Met la position courante au début de la  liste.
 	  *
 	  */
 	 public void setPosDebut() {
 
 
          /*
-          * STRATï¿½GIE : On dï¿½place la position courante sur la 1iï¿½re case.
+          * STRATÉGIE : On déplace la position courante sur la 1ière case.
           */
 
         positionCourante = 0;
@@ -132,7 +134,7 @@ public class Liste {
 	 }
 
 	 /**
-	  * Met la position courante ï¿½ la fin de la liste.
+	  * Met la position courante à la fin de la liste.
 	  *
 	  *
 	  */
@@ -140,7 +142,7 @@ public class Liste {
 
 
          /*
-          * STRATï¿½GIE : on dï¿½place la position courante au noeud pointï¿½ par fin.
+          * STRATÉGIE : on déplace la position courante au noeud pointé par fin.
           */
 		 positionCourante = liste.length-1;
 
@@ -148,32 +150,32 @@ public class Liste {
 	 }
 
 	 /**
-	  * Passe la position courante au prï¿½cï¿½dent dans la liste.
+	  * Passe la position courante au précédent dans la liste.
 	  *
-	  * Antï¿½cï¿½dent : La liste ne doit pas ï¿½tre vide.
+	  * Antécédent : La liste ne doit pas être vide.
 	  *
 	  */
 	 public void setPosPrecedent(){
 
 
 		 /*
-		  *STRATï¿½GIE : On place une variable lovale temporaire sur le premier
-		  *noeud et on parcrous le chaï¿½nege jusqu'ï¿½ ce que le noeud suivant soit celui
-		  *pointï¿½ par la position courante.
+		  *STRATÉGIE : On place une variable lovale temporaire sur le premier
+		  *noeud et on parcrous le chaînege jusqu'à ce que le noeud suivant soit celui
+		  *pointé par la position courante.
 		  *
-		  *On ne fait rien si la position courante est au dï¿½but
+		  *On ne fait rien si la position courante est au début
 		  *
 		  ***********************************************************/
 
-		 //on ne dï¿½place rien si on est au dï¿½but
+		 //on ne déplace rien si on est au début
 		 if(positionCourante > 0)
 			 positionCourante--;
 	 }
 
 
 	 /**
-	  * Dï¿½cale les donnï¿½es d'un tableau d'une case vers la droite pour les cases
-	  * de dï¿½but ï¿½ fin.  Dï¿½but et fin sont considï¿½rï¿½s comme valides.
+	  * Décale les données d'un tableau d'une case vers la droite pour les cases
+	  * de début à fin.  Début et fin sont considérés comme valides.
 	  */
 	 private void decalerDroite(Object[] tab, int debut, int fin){
 
@@ -185,8 +187,8 @@ public class Liste {
 
 
 	 /**
-	  * Dï¿½cale les donnï¿½es d'un tableau d'une case vers la gauche pour les cases
-	  * de dï¿½but ï¿½ fin.  Dï¿½but et fin sont considï¿½rï¿½s comme valides.
+	  * Décale les données d'un tableau d'une case vers la gauche pour les cases
+	  * de début à fin.  Début et fin sont considérés comme valides.
 	  */
 	 private void decalerGauche(Object[] tab, int debut, int fin){
 
@@ -198,24 +200,24 @@ public class Liste {
 
 
 	 /**
-	  * Insï¿½re l'ï¿½lï¿½ment reï¿½u ï¿½ la position courante aprï¿½s avoir dï¿½placï¿½
-	  * tous les ï¿½lï¿½ments vers la droite d'une case
+	  * Insère l'élément reçu à la position courante après avoir déplacé
+	  * tous les éléments vers la droite d'une case
       *
-      * Antï¿½dï¿½cent : Aucun.
+      * Antédécent : Aucun.
       *
-	  * Consï¿½quent : nbElement = nbElement + 1 & liste.getElement() == element.
-	  *                       La position courante reste inchangï¿½e
+	  * Conséquent : nbElement = nbElement + 1 & liste.getElement() == element.
+	  *                       La position courante reste inchangée
 	  *
-	  * @param element L'ï¿½lï¿½ment ï¿½ insï¿½rer ï¿½ la position courante.
+	  * @param element L'Élément à insérer à la position courante.
 	  *
 	  */
 	 public void insererALaPosition(Object element){
 
 		 /*
-		  * STRATï¿½GIE : On utilise le nombre d'ï¿½lï¿½ments pour tester ss'il reste
-		  * de  la place. Si c'est le cas, on dï¿½cale les donnï¿½es ï¿½ l'aide de la classe
-		  * Arrays et on met l'ï¿½lï¿½ment ï¿½ la position courante qui sera dï¿½placï¿½e
-		  * sur le nouvel ï¿½lï¿½ment insï¿½rï¿½.
+		  * STRATÉGIE : On utilise le nombre d'éléments pour tester ss'il reste
+		  * de  la place. Si c'est le cas, on décale les données à l'aide de la classe
+		  * Arrays et on met l'élément à la position courante qui sera déplacée
+		  * sur le nouvel élément inséré.
 		  */
 
 		 //Si la liste n'est pas pleine seulement
@@ -225,25 +227,25 @@ public class Liste {
 
 			 liste[positionCourante] = element;
 
-		    //un ï¿½lï¿½ment de plus
+		    //un élément de plus
 		    nbElements++;
 		 }
 
 	 }
 
 	 /**
-	  * Insï¿½re l'ï¿½lï¿½ment reï¿½u avant la position courante
+	  * Insère l'élément reçu avant la position courante
 	  *
-      * Antï¿½dï¿½cent : Aucun.
+      * Antédécent : Aucun.
       *
-	  * Consï¿½quent : nbElement = nbElement + 1 & liste.getElement() == element.
+	  * Conséquent : nbElement = nbElement + 1 & liste.getElement() == element.
 	  *
-	  * @param element L'ï¿½lï¿½ment ï¿½ insï¿½rer dans la liste avant la position courante.
+	  * @param element L'Élément à insérer dans la liste avant la position courante.
 	  */
 	 public void insererApres(Object element){
 
 		 /*
-		  * STRATï¿½GIE : On utilise insererApres en utilisant positionCourante -1
+		  * STRATÉGIE : On utilise insererApres en utilisant positionCourante -1
 		  */
 
 		 setPosSuivant();
@@ -253,7 +255,7 @@ public class Liste {
 	 }
 
 	 /**
-	 * Supprime l'ï¿½lï¿½ment ï¿½ la position courante.
+	 * Supprime l'élément à la position courante.
 	 */
 	 public void supprime(){
 
@@ -261,37 +263,39 @@ public class Liste {
 	     nbElements--;
 	 }
 
-	 //LES AUTRES Mï¿½THODES
+	 //LES AUTRES MÉTHODES
 	 /**
-	  * Retourne l'ï¿½lï¿½ment ï¿½ la position courante
+	  * Retourne l'élément à la position courante
 	  *
-	  * Antï¿½cï¿½dent : La liste ne doit pas ï¿½tre vide.
+	  * Antécédent : La liste ne doit pas être vide.
 	  *
-	  * Consï¿½quent : Le contenu de la liste est inchangï¿½ et la position courante
-	  * reste inchangï¿½e.
+	  * Conséquent : Le contenu de la liste est inchangé et la position courante
+	  * reste inchangée.
 	  *
-	  * @return L'ï¿½lï¿½ment ï¿½ la position courante
+	  * @return L'élément à la position courante
 	  */
 	 public Object getElement(){
 
-		      /*STRATï¿½GIE : Retourne simplement l'ï¿½lï¿½ment ï¿½ la
+		      /*STRATÉGIE : Retourne simplement l'élément à la
 		       * position courante.
 		       */
 			 return liste[positionCourante];
 	 }
 
 	 /**
-	  * Retourne le nombre d'ï¿½lï¿½ments actuellement dans la liste.
+	  * Retourne le nombre d'éléments actuellement dans la liste.
 	  *
-	  * Antï¿½cï¿½dent : aucun.
-	  * Consï¿½quent : aucun.
+	  * Antécédent : aucun.
+	  * Conséquent : aucun.
 	  *
-	  * @return Le nombre d'ï¿½lï¿½ments de la liste.
+	  * @return Le nombre d'éléments de la liste.
 	  */
 	 public int getNbElements(){
 
 		 return nbElements;
 	 }
+
+
 
 
 }
