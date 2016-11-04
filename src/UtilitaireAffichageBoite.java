@@ -1,8 +1,9 @@
+
 /**
- * Regroupe tous les SP pour gÈrer l'affichage d'une boÓte de disjoncteurs 
- * dans le cadre du travail pratique numÈro 2 inf111 A16 (voir ÈnoncÈ).
+ * Regroupe tous les SP pour g√©rer l'affichage d'une bo√Æte de disjoncteurs 
+ * dans le cadre du travail pratique num√©ro 2 inf111 A16 (voir √©nonc√©).
  * 
- * @author Pierre BÈlisle (copyright 2016)
+ * @author Pierre B√©lisle (copyright 2016)
  * @version H2016
  *
  */
@@ -20,44 +21,42 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class UtilitaireAffichageBoite {
-	
+
 	public static final int NB_DISJ_PAR_COLONNE = 40;
-	
-	// A un effet sur la taille du texte affichÈ.
+
+	// A un effet sur la taille du texte affich√©.
 	public static final int NB_BTN_LARGEUR = 8;
-		
+
 	/*
-		 * La stratÈgie est d'utiliser une classe interne GrilleGUI qui permet 
-		 * d'afficher dans une grille et d'ajouter des boutons d'options de menu.  
-		 * Cette classe existait dÈj‡†‡†, elle a simplement ÈtÈ adaptÈe pour ce travail.
-		 */
-	
-	// Permet l'affichage avec les options du menu dÈcrite dans 
-	//OPTIONS_MENU
-	private static GrilleGui gui = 
-			new GrilleGui(NB_DISJ_PAR_COLONNE,
-					NB_BTN_LARGEUR, 
-					Constantes.COULEUR_TEXTE, 
-					Constantes.COULEUR_FOND, 
-					Constantes.OPTIONS_MENU,
-					GrilleGui.QUITTE);
-	
-   /**
-	 * Retourne si vrai si un des boutons de menu a ÈtÈ cliquÈ.
-	 * 
-	 * @return Si un des boutons de menu a ÈtÈ cliquÈ.
+	 * La strat√©gie est d'utiliser une classe interne GrilleGUI qui permet
+	 * d'afficher dans une grille et d'ajouter des boutons d'options de menu.
+	 * Cette classe existait d√©j√†, elle a simplement √©t√© adapt√©e pour ce
+	 * travail.
 	 */
-	public static boolean optionMenuEstCliquee(){
+
+	// Permet l'affichage avec les options du menu d√©crite dans
+	// OPTIONS_MENU
+	private static GrilleGui gui = new GrilleGui(NB_DISJ_PAR_COLONNE,
+			NB_BTN_LARGEUR, Constantes.COULEUR_TEXTE, Constantes.COULEUR_FOND,
+			Constantes.OPTIONS_MENU, GrilleGui.QUITTE);
+
+	/**
+	 * Retourne si vrai si un des boutons de menu a √©t√© cliqu√©.
+	 * 
+	 * @return Si un des boutons de menu a √©t√© cliqu√©.
+	 */
+	public static boolean optionMenuEstCliquee() {
 		return gui.estBoutonMenu;
 	}
 
 	/**
-	 * Retourne la derniËre option cliquÈe et null autrement.
-	 * @return Le texte dans le bouton cliquÈ s'il y a lieu.
+	 * Retourne la derni√®re option cliqu√©e et null autrement.
+	 * 
+	 * @return Le texte dans le bouton cliqu√© s'il y a lieu.
 	 */
-	public static String getOptionMenuClique(){
+	public static String getOptionMenuClique() {
 
-		if(gui.estBoutonMenu)
+		if (gui.estBoutonMenu)
 			gui.estBoutonMenu = false;
 		else
 			gui.optionClique = null;
@@ -65,160 +64,155 @@ public class UtilitaireAffichageBoite {
 		return gui.optionClique;
 	}
 
-
 	/**
-	 * Affiche les informations que contient la boÓte et les 
-	 * options de menu.
+	 * Affiche les informations que contient la bo√Æte et les options de menu.
 	 * 
-	 * @param boite La boÓte ‡†afficher.
+	 * @param boite
+	 *            La bo√Æte √† afficher.
 	 */
-	public static void afficherBoite(Boite boite){
-		
-		
+	public static void afficherBoite(Boite boite) {
+
 		final int NB_COL_AFFICHAGE = 5;
-		
-		// Nombre de cases de dÈplacement pour afficher les NB_COLONNES
+
+		// Nombre de cases de d√©placement pour afficher les NB_COLONNES
 		final int DEP_POSITION = 3;
-		
+
 		gui.effacer();
-		
+
 		afficherInfoBoite(boite);
 
-		// le NB_COL_AFFICHAGE c'est pour les cases reprÈsentants la boite
+		// le NB_COL_AFFICHAGE c'est pour les cases repr√©sentants la boite
 		// contient des disjoncteurs et un espace au centre
-		int posJ = (gui.getNbColonnes() - NB_COL_AFFICHAGE) /
-									Boite.NB_COLONNES;
+		int posJ = (gui.getNbColonnes() - NB_COL_AFFICHAGE) / Boite.NB_COLONNES;
 
 		Disjoncteur disjoncteur;
 
-		for(int i = 0; i < Boite.NB_LIGNES_MAX; i++){
+		for (int i = 0; i < Boite.NB_LIGNES_MAX; i++) {
 
-			for(int j = 0; j < Boite.NB_COLONNES; j++){
+			for (int j = 0; j < Boite.NB_COLONNES; j++) {
 
-				gui.setBordureVisible(i,posJ + DEP_POSITION * j, true);
+				gui.setBordureVisible(i, posJ + DEP_POSITION * j, true);
 
-				if(!boite.getEmplacementEstVide(j,i)){
+				if (!boite.getEmplacementEstVide(j, i)) {
 
-					// Èvite pls appels ‡†l'accesseur.
-					disjoncteur = boite.getDisjoncteur(j,i);
+					// √©vite pls appels √† l'accesseur.
+					disjoncteur = boite.getDisjoncteur(j, i);
 
-					if(disjoncteur.getEtat() == Disjoncteur.ETEINT){
+					if (disjoncteur.getEtat() == Disjoncteur.ETEINT) {
 
-						gui.setCouleurFond(i,
-								posJ+ j * DEP_POSITION + 1, Color.RED);
-						
-						gui.setBordureVisible(i,
-								posJ+ j * DEP_POSITION + 1, true);
+						gui.setCouleurFond(i, posJ + j * DEP_POSITION + 1,
+								Color.RED);
 
-						gui.setCouleurFond(i, 
-								posJ + j * DEP_POSITION, Color.WHITE);
-						
-						gui.setBordureVisible(i,posJ + j * DEP_POSITION, true);
-						gui.setValeur(i, posJ + j * DEP_POSITION, 
-								disjoncteur.getAmpere() + "A/" +
-										disjoncteur.getTension() + "V/" +
-										disjoncteur.getPuissanceEnWatt()  + "W");
+						gui.setBordureVisible(i, posJ + j * DEP_POSITION + 1,
+								true);
+
+						gui.setCouleurFond(i, posJ + j * DEP_POSITION,
+								Color.WHITE);
+
+						gui.setBordureVisible(i, posJ + j * DEP_POSITION, true);
+						gui.setValeur(i, posJ + j * DEP_POSITION,
+								disjoncteur.getAmpere() + "A/"
+										+ disjoncteur.getTension() + "V/"
+										+ disjoncteur.getPuissanceEnWatt()
+										+ "W");
 					}
 
-					else{
-						gui.setCouleurFond(i, 
-								posJ + j * DEP_POSITION, Color.GRAY);
-						
-						gui.setBordureVisible(i,posJ + j * DEP_POSITION, true);
+					else {
+						gui.setCouleurFond(i, posJ + j * DEP_POSITION,
+								Color.GRAY);
 
-						gui.setCouleurFond(i, 
-								posJ+ j * DEP_POSITION + 1, Color.WHITE);
-						
-						gui.setBordureVisible(i,posJ+ j * DEP_POSITION + 1, true);
-						
-						gui.setValeur(i, posJ + j * DEP_POSITION + 1, 
-								disjoncteur.getAmpere() + "A/" +
-										disjoncteur.getTension() + "V/" +
-										disjoncteur.getPuissanceEnWatt()  + "W");
-					}					
+						gui.setBordureVisible(i, posJ + j * DEP_POSITION, true);
+
+						gui.setCouleurFond(i, posJ + j * DEP_POSITION + 1,
+								Color.WHITE);
+
+						gui.setBordureVisible(i, posJ + j * DEP_POSITION + 1,
+								true);
+
+						gui.setValeur(i, posJ + j * DEP_POSITION + 1,
+								disjoncteur.getAmpere() + "A/"
+										+ disjoncteur.getTension() + "V/"
+										+ disjoncteur.getPuissanceEnWatt()
+										+ "W");
+					}
 				}
 			}
 		}
 	}
-	
 
 	/*
-	 * ProcÈdure locale pour afficher les infos d'en-tÍte de la boÓte.
+	 * Proc√©dure locale pour afficher les infos d'en-t√™te de la bo√Æte.
 	 */
-	private static void afficherInfoBoite(Boite boite){
+	private static void afficherInfoBoite(Boite boite) {
 
-		//  On veut afficher en bas†‡ gauche.
+		// On veut afficher en bas √† gauche.
 		int ligne = gui.getNbLignes() - 2;
 
-		gui.setValeur(ligne, 0,"QtÈe de tension entrÈe :");
-		gui.setValeur(ligne, 1, 
+		gui.setValeur(ligne, 0, "Qt√©e de tension entr√©e :");
+		gui.setValeur(ligne, 1,
 				String.valueOf(boite.getNbDisjoncteursEntree()));
 
 		ligne--;
-		gui.setValeur(ligne, 0,"QtÈe de tension phase :");
-		gui.setValeur(ligne, 1, 
-				String.valueOf(boite.getNbDisjoncteursEntree()));
+		gui.setValeur(ligne, 0, "Qt√©e de tension phase :");
+		gui.setValeur(ligne, 1, String.valueOf(boite.getNbDisjoncteursPhase()));
 
 		ligne--;
-		gui.setValeur(ligne, 0,"Consommation :");
-		gui.setValeur(ligne, 1, String.valueOf(boite.getConsommationTotalEnWatt()) + "W");
+		gui.setValeur(ligne, 0, "Consommation :");
+		gui.setValeur(ligne, 1,
+				String.valueOf(boite.getConsommationTotalEnWatt()) + "W");
 
 		ligne--;
-		gui.setValeur(ligne, 0, "CapacitÈ :");
+		gui.setValeur(ligne, 0, "Capacit√© :");
 		gui.setValeur(ligne, 1, String.valueOf(boite.getMaxAmperes()) + "A");
 
 	}
 
-
 	/**
-	 * Classe locale PRIV…E qui permet la gestion une application de
-	 * type grille.  
+	 * Classe locale PRIV√âE qui permet la gestion une application de type
+	 * grille.
 	 * 
-	 * AUX …TUDIANTS : Il n'est pas nÈcessaire de lire cette classe pour 
-	 * rÈussir le travail.  Elle est utilisÈe ici pour l'affichage des disjoncteurs 
-	 * dans le cadre du travail pour lequel la thÈorie des GUI n'a pas encore ÈtÈ 
-	 * vue. Les Ètudiants mais il n'ont pas Ë s'en servir directement.
+	 * AUX √âTUDIANTS : Il n'est pas n√©cessaire de lire cette classe pour r√©ussir
+	 * le travail. Elle est utilis√©e ici pour l'affichage des disjoncteurs dans
+	 * le cadre du travail pour lequel la th√©orie des GUI n'a pas encore √©t√©
+	 * vue. Les √©tudiants mais il n'ont pas √† s'en servir directement.
 	 *
-	 * DESCRIPTION : 
-	 * Grille de jeu rectangulaire d'au maximum de
-	 * MAX_LIGNES X MAX_COLONNES, ce qui permet d'obtenir s'il y  eu 
-	 * un clic, la position du clic et modifier le contenu de la case 
-	 * (couleur et texte).
+	 * DESCRIPTION : Grille de jeu rectangulaire d'au maximum de MAX_LIGNES X
+	 * MAX_COLONNES, ce qui permet d'obtenir s'il y eu un clic, la position du
+	 * clic et modifier le contenu de la case (couleur et texte).
 	 * 
-	 * Il est possible aussi d'ajouter des boutons de menu.  Dans ce cas, 
-	 * estBoutonMenu retourne vrai et getTexteMenu retourne le texte contenu 
-	 * dans le bouton.  Ces boutons sont crÈÈs en bas de la fenÍtre ‡ partir d'un
-	 * tableau de String fourni au constructeur (mettre null si non dÈsirÈ).
+	 * Il est possible aussi d'ajouter des boutons de menu. Dans ce cas,
+	 * estBoutonMenu retourne vrai et getTexteMenu retourne le texte contenu
+	 * dans le bouton. Ces boutons sont cr√©√©s en bas de la fen√™tre √† partir d'un
+	 * tableau de String fourni au constructeur (mettre null si non d√©sir√©).
 	 * 
-	 * Utile pour des TP en inf111 (Jeux de grille  tels Sudoku, Binero, affichage 
-	 * d'un tableau 2D, ...)
+	 * Utile pour des TP en inf111 (Jeux de grille tels Sudoku, Binero,
+	 * affichage d'un tableau 2D, ...)
 	 * 
-	 * @author Pierre BÈlisle (copyright 2016)
+	 * @author Pierre B√©lisle (copyright 2016)
 	 * @version H2016
 	 */
-	private static class GrilleGui  implements Runnable{
+	private static class GrilleGui implements Runnable {
 
 		/*
-		 * STRAT…IE : On met des boutons dans un panneau et on offre les
-		 *                          mÈthodes pour les modifier la couleur de fond et le
-		 *                          texte.
+		 * STRAT√âGIE : On met des boutons dans un panneau et on offre les
+		 * m√©thodes pour les modifier la couleur de fond et le texte.
 		 */
 
-		//Limite pour voir le texte
+		// Limite pour voir le texte
 		public static final int MAX_LIGNES = 50;
 		public static final int MAX_COLONNES = 30;
 
 		public static final int TAILLE_CAR = 10;
 
-		// Deux modes de fermeture du gui.  On quitte le programme  ou on 
-		// dispose juste la fen√É¬™tre.
+		// Deux modes de fermeture du gui. On quitte le programme ou on
+		// dispose juste la fen√™tre.
 		public static final int QUITTE = JFrame.EXIT_ON_CLOSE;
 
 		// On compose dans un cadre.
 		private JFrame cadre = new JFrame();
 
-		// La grille de boutonns qui est affichÈe.
-		private JButton [][] grille;
+		// La grille de boutonns qui est affich√©e.
+		private JButton[][] grille;
 
 		// Retenir la taille de la grille.
 		private int nbLignes;
@@ -228,85 +222,82 @@ public class UtilitaireAffichageBoite {
 		private Color couleurTexte;
 		private Color couleurFond;
 
-		// La taille de l'Ècran.
+		// La taille de l'√©cran.
 		private Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
 		// Retenir le tableau des options de menus.
-		private String [] tabMenus;
+		private String[] tabMenus;
 
-		// Pour les options de menus du panneau du bas. 
+		// Pour les options de menus du panneau du bas.
 		private boolean estBoutonMenu;
 
-		// Le texte du bouton cliquÈ s'il y a eu un clic sur un des boutons de menu
-		// et il est mis†‡ null aprËs getOptionMenu.
+		// Le texte du bouton cliqu√© s'il y a eu un clic sur un des boutons de
+		// menu
+		// et il est mis √† null apr√®s getOptionMenu.
 		private String optionClique;
 
-		
-	/**
-		 * CrÈe une grille selon les dimensions et les couleurs reÁues.
+		/**
+		 * Cr√©e une grille selon les dimensions et les couleurs re√ßues.
 		 * 
-		 * S'il y a un tableau de menus, des boutons  sont ajoutÈs en bas 
-		 * de l'Ècran.
+		 * S'il y a un tableau de menus, des boutons sont ajout√©s en bas de
+		 * l'√©cran.
 		 * 
-		 * @param nbLignes L'axe des Y
-		 * @param nbColonnes L'axe des X
+		 * @param nbLignes
+		 *            L'axe des Y
+		 * @param nbColonnes
+		 *            L'axe des X
 		 * @param couleurTexte
 		 * @param couleurFond
-		 * @param tabMenus Les options du menu du bas
+		 * @param tabMenus
+		 *            Les options du menu du bas
 		 */
-		public GrilleGui(int nbLignes, int nbColonnes, 
-				Color couleurTexte, Color couleurFond,
-				String[] tabMenus,
-				int modeFermeture){
+		public GrilleGui(int nbLignes, int nbColonnes, Color couleurTexte,
+				Color couleurFond, String[] tabMenus, int modeFermeture) {
 
-			//On retient la taille et les couleurs de la grille
-			this.nbLignes = (nbLignes>MAX_LIGNES)
-					?MAX_LIGNES
-							:nbLignes;
+			// On retient la taille et les couleurs de la grille
+			this.nbLignes = (nbLignes > MAX_LIGNES) ? MAX_LIGNES : nbLignes;
 
-			this.nbColonnes = (nbColonnes>MAX_COLONNES)
-					?MAX_COLONNES
-							:nbColonnes;
+			this.nbColonnes = (nbColonnes > MAX_COLONNES) ? MAX_COLONNES
+					: nbColonnes;
 
 			this.couleurFond = couleurFond;
 			this.couleurTexte = couleurTexte;
 
-			//On retient les options du menu
+			// On retient les options du menu
 			this.tabMenus = tabMenus;
 
-			//On crÈe le tableau 2D (vide)
+			// On cr√©e le tableau 2D (vide)
 			grille = new JButton[nbLignes][nbColonnes];
-					
 
-			//Rien de cliquÈ ‡ date
+			// Rien de cliqu√© √† date
 			estBoutonMenu = false;
 
-			//On crÈe le panneau du bas avec les boutons de menu.
+			// On cr√©e le panneau du bas avec les boutons de menu.
 
-			//On affiche le cadre dans un thread
+			// On affiche le cadre dans un thread
 			Thread t = new Thread(this);
 			t.start();
 
 		}
-		
+
 		/**
 		 * Efface la grille d'en haut.
 		 */
-		public void effacer(){
-		       
+		public void effacer() {
+
 			/*
-			 * Comme c'est un Thread,  il se peut que la grille ne soit pas encore 
-			 * crÈÈe alors on attend.
+			 * Comme c'est un Thread, il se peut que la grille ne soit pas
+			 * encore cr√©√©e alors on attend.
 			 */
-			if(grille[0][0]==null)
+			if (grille[0][0] == null)
 				try {
 					Thread.sleep(300);
-				} catch (InterruptedException e) {				
+				} catch (InterruptedException e) {
 					e.printStackTrace();
-			   }
+				}
 
-			for(int i =0; i < grille.length;i++){
-				for(int j =0; j < grille[i].length;j++){
+			for (int i = 0; i < grille.length; i++) {
+				for (int j = 0; j < grille[i].length; j++) {
 					grille[i][j].setBackground(Color.WHITE);
 					grille[i][j].setBorderPainted(false);
 					grille[i][j].setText(" ");
@@ -317,19 +308,21 @@ public class UtilitaireAffichageBoite {
 		/**
 		 * Permet de modifier la valeur d'une case de la grille
 		 * 
-		 * @param coord La position de la case dÈsirÈe
-		 * @param valeur La nouvelle valeur
+		 * @param coord
+		 *            La position de la case d√©sir√©e
+		 * @param valeur
+		 *            La nouvelle valeur
 		 */
-		public void setValeur(int y, int x, String valeur){
+		public void setValeur(int y, int x, String valeur) {
 
 			/*
-			 * Comme c'est un Thread,  il se peut que la grille ne soit pas encore 
-			 * crÈÈe alors on attend.
+			 * Comme c'est un Thread, il se peut que la grille ne soit pas
+			 * encore cr√©√©e alors on attend.
 			 */
-			if(grille[y][x]==null)
+			if (grille[y][x] == null)
 				try {
 					Thread.sleep(300);
-				} catch (InterruptedException e) {				
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 
@@ -338,6 +331,7 @@ public class UtilitaireAffichageBoite {
 
 		/**
 		 * Accesseur du nombre de lignes.
+		 * 
 		 * @return Le nombre de lignes de la grille.
 		 */
 		public int getNbLignes() {
@@ -346,6 +340,7 @@ public class UtilitaireAffichageBoite {
 
 		/**
 		 * Accesseur du nombre de colonnes.
+		 * 
 		 * @return Le nombre de colonnes de la grille.
 		 */
 		public int getNbColonnes() {
@@ -355,15 +350,17 @@ public class UtilitaireAffichageBoite {
 		/**
 		 * Permet de changer la couleur de fond d'une case.
 		 * 
-		 * @param coord La position de la case.
-		 * @param couleur La nouvelle couleur.
+		 * @param coord
+		 *            La position de la case.
+		 * @param couleur
+		 *            La nouvelle couleur.
 		 */
-		public void setCouleurFond(int y, int x, Color couleurFond){
+		public void setCouleurFond(int y, int x, Color couleurFond) {
 
-			if(grille[y][x]==null)
+			if (grille[y][x] == null)
 				try {
 					Thread.sleep(300);
-				} catch (InterruptedException e) {				
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 
@@ -373,79 +370,81 @@ public class UtilitaireAffichageBoite {
 		/**
 		 * Permet de changer la couleur de texte d'une case.
 		 * 
-		 * @param coord La position de la case..
-		 * @param couleur La nouvelle couleur.
+		 * @param coord
+		 *            La position de la case..
+		 * @param couleur
+		 *            La nouvelle couleur.
 		 */
-		public void setBordureVisible(int y, int x, boolean visible){
-			if(grille[y][x]==null)
+		public void setBordureVisible(int y, int x, boolean visible) {
+			if (grille[y][x] == null)
 				try {
 					Thread.sleep(300);
-				} catch (InterruptedException e) {				
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 
 			grille[y][x].setBorderPainted(visible);
 		}
 
-
 		/**
-		 * Fonction locale pour Èviter la rÈpÈtition de code.
-		 * Elle sert ‡ mettre toutes les tailles ‡ la mÍme dimension.
+		 * Fonction locale pour √©viter la r√©p√©tition de code. Elle sert √† mettre
+		 * toutes les tailles √† la m√™me dimension.
 		 * 
-		 * @param paneau Le panneau ‡ dimensionner.
-		 * @param dim La dimension du panneau.
+		 * @param paneau
+		 *            Le panneau √† dimensionner.
+		 * @param dim
+		 *            La dimension du panneau.
 		 */
-		private void setTaillePanneau (JPanel panneau, Dimension dim){
+		private void setTaillePanneau(JPanel panneau, Dimension dim) {
 			panneau.setMinimumSize(dim);
 			panneau.setMaximumSize(dim);
 			panneau.setPreferredSize(dim);
 		}
 
-
 		@Override
 		public void run() {
 
-			//plein Ècran
+			// plein √©cran
 			cadre.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-			//On quitte sur X
+			// On quitte sur X
 			cadre.setDefaultCloseOperation(QUITTE);
 
-			//Obtention de la rÈfÈrence sur le contentPane (Èvite pls appels)
+			// Obtention de la r√©f√©rence sur le contentPane (√©vite pls appels)
 			JPanel panneauPrincipal = (JPanel) cadre.getContentPane();
 
-			//Le panneau contenant la grille
+			// Le panneau contenant la grille
 			JPanel panneauHaut = new JPanel();
 
-			//Une disposition en grille pour celui du haut
+			// Une disposition en grille pour celui du haut
 			panneauHaut.setLayout(new GridLayout(nbLignes, nbColonnes));
 
-			//On ajoute les boutons vides
+			// On ajoute les boutons vides
 			ajouterBoutons(panneauHaut);
 
-			if(tabMenus != null){
+			if (tabMenus != null) {
 
-				//Les boutons de menu s'il y en a (FlowLayout par dÈfaut)
-				JPanel panneauBas = new JPanel();		
+				// Les boutons de menu s'il y en a (FlowLayout par d√©faut)
+				JPanel panneauBas = new JPanel();
 
-				Dimension dh = new Dimension (d.width, (int)(d.height*.8));
-				Dimension db = new Dimension (d.width, (int)(d.height*.1));
+				Dimension dh = new Dimension(d.width, (int) (d.height * .8));
+				Dimension db = new Dimension(d.width, (int) (d.height * .1));
 
-				//La dimension pour l'allure de la fenÍtre
+				// La dimension pour l'allure de la fen√™tre
 				setTaillePanneau(panneauHaut, dh);
 				setTaillePanneau(panneauBas, db);
 
 				ajouterMenu(panneauBas);
 
 				panneauPrincipal.add(panneauHaut, BorderLayout.PAGE_START);
-				panneauPrincipal.add(panneauBas, BorderLayout.PAGE_END);			
+				panneauPrincipal.add(panneauBas, BorderLayout.PAGE_END);
 			}
 
 			else
-				//Le panneau du haut est plein Ècran s'il n'y a pas de menu
+				// Le panneau du haut est plein √©cran s'il n'y a pas de menu
 				panneauPrincipal.add(panneauHaut);
 
-			cadre.setVisible(true);		
+			cadre.setVisible(true);
 		}
 
 		/*
@@ -453,53 +452,53 @@ public class UtilitaireAffichageBoite {
 		 * 
 		 * Si on est ici, on est certain qu'il y a des options de menu.
 		 */
-		private void ajouterMenu(JPanel panneau){
+		private void ajouterMenu(JPanel panneau) {
 
 			JButton b;
 
+			for (int i = 0; i < tabMenus.length; i++) {
 
-			for(int i = 0; i < tabMenus.length; i++){
+				b = new JButton(tabMenus[i]);
 
-				b =new JButton(tabMenus[i]);
-
-				// La dimension d'un bouton dÈpend de la taille de l'Ècran, on centre
-				// la grille.			
-				b.addActionListener(new ActionListener(){
+				// La dimension d'un bouton d√©pend de la taille de l'√©cran, on
+				// centre
+				// la grille.
+				b.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
 
-						optionClique = ((JButton)e.getSource()).getText();
+						optionClique = ((JButton) e.getSource()).getText();
 						estBoutonMenu = true;
-					}	
+					}
 				});
-
 
 				panneau.add(b);
 			}
 
 		}
+
 		/*
 		 * Ajoute les boutons dans la grille et dans le panneau.
 		 * 
-		 * Principalement pour la lisibilitÈ du code.
+		 * Principalement pour la lisibilit√© du code.
 		 */
-		private void ajouterBoutons(JPanel panneau){
+		private void ajouterBoutons(JPanel panneau) {
 
-			for(int i = 0; i < nbLignes;i++)
-				for(int j = 0; j <nbColonnes;j++){
+			for (int i = 0; i < nbLignes; i++)
+				for (int j = 0; j < nbColonnes; j++) {
 
-					grille[i][j] =  new JButton();
+					grille[i][j] = new JButton();
 					grille[i][j].setBackground(couleurFond);
 					grille[i][j].setForeground(couleurTexte);
 					grille[i][j].setBorderPainted(false);
-					
-					grille[i][j].setFont(new Font("sans serif", 
-							                                         Font.BOLD, TAILLE_CAR));
+
+					grille[i][j].setFont(
+							new Font("sans serif", Font.BOLD, TAILLE_CAR));
 
 					panneau.add(grille[i][j]);
-				}	
+				}
 		}
 	}
-	
+
 }

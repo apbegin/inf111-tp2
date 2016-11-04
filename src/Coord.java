@@ -1,19 +1,18 @@
 /**
- * Cet enregistrement représente les coordonnées 
- * possible dans différents jeux de grille (ligne-colonne).
+ * Cet enregistrement représente les coordonnées possible dans différents jeux
+ * de grille (ligne-colonne).
  * 
- * Les attributs sont utilisables à l'aide des foncitons ou directement (public).
- * (même principe que  java.awt.Dimension).
+ * Les attributs sont utilisables à l'aide des foncitons ou directement
+ * (public). (même principe que java.awt.Dimension).
  * 
- *@author pbelisle
- *@version H 2009
- *@revisite A 2016
+ * @author pbelisle
+ * @version H 2009
+ * @revisite A 2016
  */
 public class Coord {
 
-
 	/*
-	 * Les items choisis par l'utilisateur 
+	 * Les items choisis par l'utilisateur
 	 */
 	int ligne;
 	int colonne;
@@ -23,7 +22,6 @@ public class Coord {
 		colonne = 0;
 	}
 
-
 	/**
 	 * @return La ligne
 	 */
@@ -32,7 +30,8 @@ public class Coord {
 	}
 
 	/**
-	 * @param ligne La ligne à modifier.
+	 * @param ligne
+	 *            La ligne à modifier.
 	 */
 	public void setLigne(int ligne) {
 		this.ligne = ligne;
@@ -46,7 +45,8 @@ public class Coord {
 	}
 
 	/**
-	 * @param colonne La colonne à modifier.
+	 * @param colonne
+	 *            La colonne à modifier.
 	 */
 	public void setColonne(int colonne) {
 		this.colonne = colonne;
@@ -55,7 +55,7 @@ public class Coord {
 	/**
 	 * @return Une chaîne contenant les infos de la coordonnée.
 	 */
-	public String toString(){
+	public String toString() {
 		return "(" + colonne + "-" + ligne + ")";
 	}
 }
