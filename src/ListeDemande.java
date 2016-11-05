@@ -1,16 +1,16 @@
 import java.io.Serializable;
 
 /**
- * Classe qui implémente une liste chaîné simple et ayant des méthodes pour
- *  l'ajout et la suppresions d'éléments de la liste 
+ * Classe qui implÃ©mente une liste chaÃ®nÃ© simple et ayant des mÃ©thodes pour
+ *  l'ajout et la suppresions d'Ã©lÃ©ments de la liste 
  *
- *implémentation de Serializable pour enregistrer chaque demande de la liste
+ *implÃ©mentation de Serializable pour enregistrer chaque demande de la liste
  *
- *@author Antoine Proulx-Bégin
+ *@author Antoine Proulx-BÃ©gin
  */
 public class ListeDemande implements Serializable {
 	/**
-	 * Enlève un "warning". On ne gère pas les versions.
+	 * EnlÃ¨ve un "warning". On ne gÃ¨re pas les versions.
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -28,9 +28,9 @@ public class ListeDemande implements Serializable {
 	
 	/**
 	 * classe interne Noeud pour faire le lien entre les 
-	 * éléments de la liste.
+	 * Ã©lÃ©ments de la liste.
 	 * 
-	 * @author Antoine Proulx-Bégin
+	 * @author Antoine Proulx-BÃ©gin
 	 *
 	 */
 	private class Noeud implements Serializable {
@@ -44,10 +44,9 @@ public class ListeDemande implements Serializable {
 		}
 	}
 
-
 	/**
 	 * 
-	 * @return nombre d'éléments de la liste
+	 * @return nombre d'Ã©lÃ©ments de la liste
 	 */
 	public int getNbElements() {
 		return nbElements;
@@ -62,14 +61,14 @@ public class ListeDemande implements Serializable {
 	}
 
 	/**
-	 * Change la position du noeud courant à celui du Noeud debut
+	 * Change la position du noeud courant Ã  celui du Noeud debut
 	 */
 	public void setPosDebut() {
 		posCourante = debut;
 	}
 
 	/**
-	 * Change la position du noeud courant à celui du Noeud suivant
+	 * Change la position du noeud courant Ã  celui du Noeud suivant
 	 * du noeud courant
 	 */
 	public void setPosSuivant() {
@@ -78,7 +77,7 @@ public class ListeDemande implements Serializable {
 	}
 
 	/**
-	 * Change la position du noeud courant à celui du Noeud fin
+	 * Change la position du noeud courant Ã  celui du Noeud fin
 	 */
 	public void setPosFin() {
 		posCourante = fin;
@@ -86,14 +85,14 @@ public class ListeDemande implements Serializable {
 
 	/**
 	 * 
-	 * @return l'élement du noeud courant
+	 * @return l'Ã©lement du noeud courant
 	 */
 	public Object getElement() {
 		return posCourante.element;
 	}
 
 	/**
-	 * ajouter un élément à la liste
+	 * ajouter un Ã©lÃ©ment Ã  la liste
 	 * @param element
 	 */
 	public void ajouterElement(Object element) {
@@ -109,7 +108,7 @@ public class ListeDemande implements Serializable {
 	}
 
 	/**
-	 * supprime l'élément du noeud courant
+	 * supprime l'Ã©lÃ©ment du noeud courant
 	 */
 	public void supprimerElement() {
 		if (debut == null)

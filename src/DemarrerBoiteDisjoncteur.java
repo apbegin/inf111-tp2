@@ -1,13 +1,13 @@
 /**
  * Dans le cadre du tp2 inf111 A 2016, il s'agit de simuler la gestion d'une
- * boîte électrique avec des disjoncteurs.
+ * boÃ®te Ã©lectrique avec des disjoncteurs.
  * 
  * Il est possible d'ajouter des disjoncteurs, des appareils sur un circuit, de
- * sauvegarder et de récupérer des boîtes décrites dans la classe du même nom.
+ * sauvegarder et de rÃ©cupÃ©rer des boÃ®tes dÃ©crites dans la classe du mÃªme nom.
  *
- * Le projet ne contient qu'une seule boîte à la fois.
+ * Le projet ne contient qu'une seule boÃ®te Ã  la fois.
  *
- * (voir énoncé du travail pour les détails).
+ * (voir Ã©noncÃ© du travail pour les dÃ©tails).
  * 
  * @author pbelisle
  * @version A2016
@@ -17,37 +17,37 @@
 public class DemarrerBoiteDisjoncteur {
 
 	/*
-	 * Stratégie globale : On utilise les SP des différents modules pour obtenir
+	 * StratÃ©gie globale : On utilise les SP des diffÃ©rents modules pour obtenir
 	 * une boite electrique.
 	 * 
-	 * C'est ici qu'on gère la boucle principale qui se termine si l'utilisateur
-	 * quitte ou s'il réussit.
+	 * C'est ici qu'on gÃ¨re la boucle principale qui se termine si l'utilisateur
+	 * quitte ou s'il rÃ©ussit.
 	 * 
 	 * De plus, on obtient s'il y a eu un clique sur une option de menu, alors
-	 * on délègue au module UtilitaireGestionMenu pour la distribution des
-	 * tâches.
+	 * on dÃ©lÃ¨gue au module UtilitaireGestionMenu pour la distribution des
+	 * tÃ¢ches.
 	 */
 	public static void main(String[] args) {
 
-		// Obtenir un ampérage pour la boîte.
+		// Obtenir un ampÃ©rage pour la boÃ®te.
 		int max_amperes = UtilitaireEntreeSortie.entierValide(
-				"Entrez l'ampérage de la boîte", Boite.AMPERAGE_MIN,
+				"Entrez l'ampÃ©rage de la boÃ®te", Boite.AMPERAGE_MIN,
 				Boite.AMPERAGE_MAX);
 
-		// Si l'utilisateur n'a pas annulé.
+		// Si l'utilisateur n'a pas annulÃ©.
 		if (max_amperes != Boite.AMPERAGE_MIN - 1) {
 
-			// Récupérer une boîte neuve.
+			// RÃ©cupÃ©rer une boÃ®te neuve.
 			Boite boite = new Boite(max_amperes);
 
-			// is à vrai si l'utilisateur quitte.
+			// is Ã  vrai si l'utilisateur quitte.
 			boolean quitter = false;
 
-			// Sert à obtenir une option sélectionnée.
+			// Sert Ã  obtenir une option sÃ©lectionnÃ©e.
 			String option;
 
-			// Remplit la boîte avec des disjoncteurs au hasard.
-			// NOTE : Peut être demandé à l'utilisateur éventuellement sert
+			// Remplit la boÃ®te avec des disjoncteurs au hasard.
+			// NOTE : Peut Ãªtre demandÃ© Ã  l'utilisateur Ã©ventuellement sert
 			// pour simplifier le travail.
 			boite.remplirAlea();
 
@@ -70,13 +70,13 @@ public class DemarrerBoiteDisjoncteur {
 				}
 				;
 
-				// Récupération de l'option sélectionnée pouréviter pls appels
-				// à l'accesseur.
+				// RÃ©cupÃ©ration de l'option sÃ©lectionnÃ©e pourÃ©viter pls appels
+				// Ã  l'accesseur.
 				option = UtilitaireAffichageBoite.getOptionMenuClique();
 
 				// Gestion des options du menu.
 
-				// Démarrer le bon SP selon l'option
+				// DÃ©marrer le bon SP selon l'option
 				/***/// Selon la version de Java, il est possible d'utiliser
 						// switch-case.
 				if (option.equals(

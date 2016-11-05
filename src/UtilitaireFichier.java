@@ -9,29 +9,29 @@ import java.io.PrintWriter;
 
 /**
  * Classe utilitaire qui permet de sauvegarder dans un fichier binaire ou texte.
- * Elle petmer aussi de de récupérer une boite.
+ * Elle petmer aussi de de rÃ©cupÃ©rer une boite.
  * 
- * @author Antoine Proulx-Bégin
+ * @author Antoine Proulx-BÃ©gin
  */
 public class UtilitaireFichier {
 
-	// Permet d'écrire dans un fichier texte en colonne et l'ouvrir dans Excel.
-	// Il suffit d'écrire un TAB pour changer de colonne.
+	// Permet d'Ã©crire dans un fichier texte en colonne et l'ouvrir dans Excel.
+	// Il suffit d'Ã©crire un TAB pour changer de colonne.
 	private static final String TAB = "\t";
 
 	/**
-	 * Sauvegarde la boîte dans un fichier texte dont on reçoit le nom.
+	 * Sauvegarde la boÃ®te dans un fichier texte dont on reÃ§oit le nom.
 	 * 
 	 */
 	public static void sauvegarderDsFichierTexte(Boite boite, String nomFic) {
 		try {
 			PrintWriter f = new PrintWriter(nomFic);
-			f.println("Nombre d'ampères de la boîte: " + boite.getMaxAmperes());
+			f.println("Nombre d'ampÃ¨res de la boÃ®te: " + boite.getMaxAmperes());
 			f.println("Temps de l'UPS: " + boite.temps_ups());
-			f.println("Puissance totale consommée (W): "
+			f.println("Puissance totale consommÃ©e (W): "
 					+ boite.getConsommationTotalEnWatt());
 			f.println("Position (colonne-ligne)" + TAB + "Tension" + TAB
-					+ "Ampérage utilisé (W)" + TAB + "Ratio d'utilisation");
+					+ "AmpÃ©rage utilisÃ© (W)" + TAB + "Ratio d'utilisation");
 
 			for (int i = 0; i < Boite.NB_COLONNES; i++) {
 				for (int j = 0; j < Boite.NB_LIGNES_MAX; j++) {
@@ -51,14 +51,14 @@ public class UtilitaireFichier {
 	}
 
 	/**
-	 * Sauvegarde la boîte dans le fichier fichier binaire avec le nom reçu.
+	 * Sauvegarde la boÃ®te dans le fichier fichier binaire avec le nom reÃ§u.
 	 * 
-	 * On présume le nom de fichier valide.
+	 * On prÃ©sume le nom de fichier valide.
 	 * 
 	 * @param nomFic
-	 *            à sauvegarder la boîte.
+	 *            Ã  sauvegarder la boÃ®te.
 	 * @param boite
-	 *            La boîte à  sauvegarder.
+	 *            La boÃ®te Ã Â  sauvegarder.
 	 */
 	public static void sauvegarderBoite(Boite boite, String nomFic) {
 		try {
@@ -78,14 +78,14 @@ public class UtilitaireFichier {
 	}
 
 	/**
-	 * Ouvre le fichier dont le nom correspond à  celui reçu.
+	 * Ouvre le fichier dont le nom correspond Ã Â  celui reÃ§u.
 	 * 
-	 * Exception : Le fichier doit contenir une boîte sauvegarder par la méthode
+	 * Exception : Le fichier doit contenir une boÃ®te sauvegarder par la mÃ©thode
 	 * sauvegarderBoite.
 	 * 
 	 * @param nomFic
-	 *            Le nom du fichier à  ouvrir
-	 * @return La boîte contenu dans le fichier.
+	 *            Le nom du fichier Ã Â  ouvrir
+	 * @return La boÃ®te contenu dans le fichier.
 	 * @throws ClassNotFoundException
 	 */
 	public static Boite recupererBoite(String nomFic)

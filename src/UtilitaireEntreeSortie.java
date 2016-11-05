@@ -2,7 +2,7 @@ import javax.swing.JOptionPane;
 
 /**
  * 
- * @author Antoine Proulx-Bégin
+ * @author Antoine Proulx-BÃ©gin
  *
  *         Utilitaire pour la validation des valeurs saisies par l'utilisateur
  *
@@ -15,14 +15,14 @@ public class UtilitaireEntreeSortie {
 	public static int tensionValide() {
 
 		/*
-		 * Stratégie : On utilise JOptionPane pour la saisie et les constantes
-		 * prévues.
+		 * StratÃ©gie : On utilise JOptionPane pour la saisie et les constantes
+		 * prÃ©vues.
 		 */
 
 		// JOptionPane retourne un String.
 		String tension;
 
-		// Utilisé pour la validation avec les String.
+		// UtilisÃ© pour la validation avec les String.
 		String tensionEntree = String.valueOf(Disjoncteur.TENSION_ENTREE);
 		String tensionPhase = String.valueOf(Disjoncteur.TENSION_PHASE);
 
@@ -37,7 +37,7 @@ public class UtilitaireEntreeSortie {
 	}
 
 	/**
-	 * Fonction locale pour saisir et valider l'ampérage d'un disjoncteur.
+	 * Fonction locale pour saisir et valider l'ampÃ©rage d'un disjoncteur.
 	 */
 	public static int ampereValide() {
 		String ampere;
@@ -50,18 +50,18 @@ public class UtilitaireEntreeSortie {
 			if (!(ampere == null) && !ampere.equals("")) {
 				for (int i = 0; i < Disjoncteur.AMPERAGES_PERMIS.length; i++) {
 				
-					/* ampere peut avoir valeur négative si l'on retire une
+					/* ampere peut avoir valeur nÃ©gative si l'on retire une
 					 * demande d'un disjoncteur
 					 */
 					if (Disjoncteur.AMPERAGES_PERMIS[i] == Math
 							.abs(Integer.parseInt(ampere)))
 						valide = true;
-				//si l'utilisateur à saisie des caractères non-numériques
+				//si l'utilisateur Ã  saisie des caractÃ¨res non-numÃ©riques
 				}
 			}
 		} while (!(ampere == null) && !valide);
 
-		//valeur aléatoire si l'usager annule 
+		//valeur alÃ©atoire si l'usager annule 
 		return (ampere == null)
 				? Disjoncteur.AMPERAGES_PERMIS[UtilitaireMath.entierAlea(0,
 						Disjoncteur.AMPERAGES_PERMIS.length - 1)]
@@ -74,7 +74,7 @@ public class UtilitaireEntreeSortie {
 	 * 
 	 * 
 	 * @param msgSollic
-	 *            Le message affiché.
+	 *            Le message affichÃ©.
 	 * @param min
 	 *            La plus petite valeur permise.
 	 * @param max
@@ -86,7 +86,7 @@ public class UtilitaireEntreeSortie {
 
 		String entier = null;
 
-		// Version String des valeurs reçues.
+		// Version String des valeurs reÃ§ues.
 		String minString = String.valueOf(min);
 		String maxString = String.valueOf(max);
 
@@ -94,7 +94,7 @@ public class UtilitaireEntreeSortie {
 			entier = JOptionPane.showInputDialog(
 					msgSollic + " entre " + minString + " et " + maxString);
 
-			// Vérifier si c'est convertissable en entier.
+			// VÃ©rifier si c'est convertissable en entier.
 			try {
 
 				if (entier != null) {
@@ -113,12 +113,12 @@ public class UtilitaireEntreeSortie {
 	}
 
 	/**
-	 * Saisit et valide un réel entre min et max. La fonction retourne
+	 * Saisit et valide un rÃ©el entre min et max. La fonction retourne
 	 * Double.NaN si l'utilisateur annule.
 	 * 
 	 * 
 	 * @param msgSollic
-	 *            Le message affiché.
+	 *            Le message affichÃ©.
 	 * @param min
 	 *            La plus petite valeur permise.
 	 * @param max
@@ -132,7 +132,7 @@ public class UtilitaireEntreeSortie {
 
 		reel = JOptionPane.showInputDialog(msgSollic);
 
-		// Vérifier si c'est convertissable en réel.
+		// VÃ©rifier si c'est convertissable en rÃ©el.
 		try {
 
 			if (reel != null) {

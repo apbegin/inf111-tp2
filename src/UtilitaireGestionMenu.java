@@ -13,12 +13,12 @@ import javafx.scene.Parent;
 import jdk.nashorn.internal.codegen.CompilerConstants.Call;
 
 /**
- * Classe qui contient les SP pour gérer les boutons d'options de menu.
+ * Classe qui contient les SP pour gÃ©rer les boutons d'options de menu.
  * 
  * S'il y a ajout de bouton, il faut modifier cette classe et y ajouter le
- * comportement désiré.
+ * comportement dÃ©sirÃ©.
  * 
- * @author Pierre Bélisle (copyright A2016)
+ * @author Pierre BÃ©lisle (copyright A2016)
  *
  */
 public class UtilitaireGestionMenu {
@@ -27,16 +27,16 @@ public class UtilitaireGestionMenu {
 	public static final String EXTENSION_FICHIER_TEXTE = "csv";
 
 	// Extension choisie arbitrairement pour les noms de fichier contenant
-	// une boîte.
+	// une boÃ®te.
 	public static final String EXTENSION_BOITE = "bte";
 
 	public static final String DESC_EXTENSION = "*." + EXTENSION_BOITE;
 
 	/**
-	 * L'utilisateur a quitté, on lui demande si c'est bien ce qu'il veut et
+	 * L'utilisateur a quittÃ©, on lui demande si c'est bien ce qu'il veut et
 	 * s'il veut sauvegarder avant de quitter.
 	 * 
-	 * return Si l'utilisateur poursuit dans sa démarche de quitter.
+	 * return Si l'utilisateur poursuit dans sa dÃ©marche de quitter.
 	 */
 	public static boolean veutSortir(Boite boite) {
 
@@ -56,7 +56,7 @@ public class UtilitaireGestionMenu {
 	}
 
 	/**
-	 * Ajoute un disjoncteur à la boîte.
+	 * Ajoute un disjoncteur Ã  la boÃ®te.
 	 * 
 	 * @param boite
 	 */
@@ -71,27 +71,27 @@ public class UtilitaireGestionMenu {
 			boite.ajouterDisjoncteur(c.colonne, c.ligne, d);
 
 		} else
-			JOptionPane.showMessageDialog(null, "La boîte");
+			JOptionPane.showMessageDialog(null, "La boÃ®te");
 	}
 
 	/**
-	 * Ajoute une demande à un disjoncteur. Si la demande est trop grande, le
-	 * disjoncteur est éteint.
+	 * Ajoute une demande Ã  un disjoncteur. Si la demande est trop grande, le
+	 * disjoncteur est Ã©teint.
 	 * 
 	 * @param boite
-	 *            La boite à considérer.
+	 *            La boite Ã  considÃ©rer.
 	 */
 	public static void ajouterDemande(Boite boite) {
 		int colonne = -1;
 		int ligne = -1;
 		do {
 			colonne = UtilitaireEntreeSortie.entierValide(
-					"Entrez la colonne de la boîte", 1, (Boite.NB_COLONNES));
+					"Entrez la colonne de la boÃ®te", 1, (Boite.NB_COLONNES));
 		} while (colonne == -1);
 		if (colonne != 0) {
 			do {
 				ligne = UtilitaireEntreeSortie.entierValide(
-						"Entrez la ligne de la boîte", 1,
+						"Entrez la ligne de la boÃ®te", 1,
 						(Boite.NB_LIGNES_MAX));
 			} while (ligne == -1);
 			if (ligne != 0) {
@@ -106,7 +106,7 @@ public class UtilitaireGestionMenu {
 						boite.retirerPuissance(colonne - 1, ligne - 1, demande);
 				} else
 					JOptionPane.showMessageDialog(null,
-							"Aucun disjoncteur à cette position");
+							"Aucun disjoncteur Ã  cette position");
 			}
 
 		}
@@ -114,10 +114,10 @@ public class UtilitaireGestionMenu {
 	}
 
 	/**
-	 * Sert à l'interaction avec l'utilisateur pour obtenir le nom du fichier de
+	 * Sert Ã  l'interaction avec l'utilisateur pour obtenir le nom du fichier de
 	 * sauvegarde et sa validation.
 	 * 
-	 * @return La boite récupérer ou null.
+	 * @return La boite rÃ©cupÃ©rer ou null.
 	 */
 	public static Boite recupererBoite() {
 
@@ -144,11 +144,11 @@ public class UtilitaireGestionMenu {
 	}
 
 	/**
-	 * Sert à l'interaction avec l'utilisateur pour obtenir le nom du fichier de
+	 * Sert Ã  l'interaction avec l'utilisateur pour obtenir le nom du fichier de
 	 * sauvegarde et sa validation.
 	 * 
 	 * @param La
-	 *            boîte à sauvegarder.
+	 *            boÃ®te Ã  sauvegarder.
 	 */
 	public static void sauvegarderBoite(Boite boite) {
 

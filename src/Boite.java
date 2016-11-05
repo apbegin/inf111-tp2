@@ -1,21 +1,21 @@
 import java.io.Serializable;
 
 /**
- * Module qui permet la gestion d'une boîte électrique avec disjoncteurs.
+ * Module qui permet la gestion d'une boÃ®te Ã©lectrique avec disjoncteurs.
  *
- * La boite doit d'abord être initialisée au nombre d'ampères voulus ainsi que
+ * La boite doit d'abord Ãªtre initialisÃ©e au nombre d'ampÃ¨res voulus ainsi que
  * son nombre de disjoncteurs maximum possibles.
  *
- * Implémente l'interface Serializable pour la sauvegarde dans un fichier
+ * ImplÃ©mente l'interface Serializable pour la sauvegarde dans un fichier
  * binaire.
  * 
- * @author Antoine Proulx-Bégin
+ * @author Antoine Proulx-BÃ©gin
  * 
  */
 public class Boite implements Serializable {
 
 	/**
-	 * Enlève un "warning". On ne gère pas les versions.
+	 * EnlÃ¨ve un "warning". On ne gÃ¨re pas les versions.
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class Boite implements Serializable {
 
 	public static final int NB_LIGNES_MAX = MAX_DISJONCTEURS / NB_COLONNES;
 
-	// Pour le remplissage de départ.
+	// Pour le remplissage de dÃ©part.
 	public static final double POURC_REMPLI = 0.6;
 	public static final double POURC_TENSION_ENTREE = .3;
 
@@ -40,13 +40,13 @@ public class Boite implements Serializable {
 	 *********************************/
 	private int maxAmperes;
 
-	// Le tableau est 2D mais il est à l'envers de la réalité (ligne-colonne).
-	// Toutes les méthodes qui nécessitent la position, reçoivent
+	// Le tableau est 2D mais il est Ã  l'envers de la rÃ©alitÃ© (ligne-colonne).
+	// Toutes les mÃ©thodes qui nÃ©cessitent la position, reÃ§oivent
 	// (colonne-ligne).
 	private Disjoncteur[][] tabDisjoncteurs;
 	private int nbDisjoncteurs;
 
-	// On déduit les disjoncteurs TENSION_ENTREE par
+	// On dÃ©duit les disjoncteurs TENSION_ENTREE par
 	// nbDisjoncteurs - nbDisjoncteursPhase
 	private int nbDisjoncteursPhase;
 
@@ -64,7 +64,7 @@ public class Boite implements Serializable {
 	}
 
 	/**
-	 * @return La consommation totale en Watts de la boîte.
+	 * @return La consommation totale en Watts de la boÃ®te.
 	 */
 	public double getConsommationTotalEnWatt() {
 
@@ -80,7 +80,7 @@ public class Boite implements Serializable {
 	}
 
 	/**
-	 * @return la puissance totale consommée sur les disjoncteurs.
+	 * @return la puissance totale consommÃ©e sur les disjoncteurs.
 	 */
 	public double puissance_total_boite() {
 
@@ -106,7 +106,7 @@ public class Boite implements Serializable {
 
 	/**
 	 * 
-	 * @return true si l'on peut ajouter un disjoncteur à la boîte.
+	 * @return true si l'on peut ajouter un disjoncteur Ã  la boÃ®te.
 	 */
 	public boolean getEmplacementEncoreDisponible() {
 		return (this.getEmplacementDisponible().colonne == -1) ? false : true;
@@ -116,7 +116,7 @@ public class Boite implements Serializable {
 	 * 
 	 * @param j: position colonne
 	 * @param i: position ligne
-	 * @return le disjoncteur se trouvant à la position [j][i].
+	 * @return le disjoncteur se trouvant Ã  la position [j][i].
 	 */
 	public Disjoncteur getDisjoncteur(int j, int i) {
 
@@ -125,15 +125,15 @@ public class Boite implements Serializable {
 
 	/**
 	 * 
-	 * @return nombre d'ampère maximum de la boîte.
+	 * @return nombre d'ampÃ¨re maximum de la boÃ®te.
 	 */
 	public int getMaxAmperes() {
 		return this.maxAmperes;
 	}
 
 	/**
-	 * Rempli une boîte de disjoncteurs avec des valeurs aléatoires.
-	 * Aucune demande n'est généré aléatoirement
+	 * Rempli une boÃ®te de disjoncteurs avec des valeurs alÃ©atoires.
+	 * Aucune demande n'est gÃ©nÃ©rÃ© alÃ©atoirement
 	 */
 	public void remplirAlea() {
 		int ampere, tension = 0;
@@ -141,7 +141,7 @@ public class Boite implements Serializable {
 		for (int i = 0; i < NB_COLONNES; i++) {
 			for (int j = 0; j < NB_LIGNES_MAX; j++) {
 				
-				//Crée un disjoncteur en fonction de POURC_REMPLI
+				//CrÃ©e un disjoncteur en fonction de POURC_REMPLI
 				if (UtilitaireMath.reelAlea(0, 100) <= POURC_REMPLI * 100) {
 					ampere = Disjoncteur.AMPERAGES_PERMIS[UtilitaireMath
 							.entierAlea(0,
@@ -166,7 +166,7 @@ public class Boite implements Serializable {
 
 	/**
 	 * 
-	 * @return les coordonnées, s'il y a lieu du prochain emplacement 
+	 * @return les coordonnÃ©es, s'il y a lieu du prochain emplacement 
 	 * disponible pour ajouter un disjoncteur
 	 * 
 	 */
@@ -192,7 +192,7 @@ public class Boite implements Serializable {
 
 	/**
 	 * 
-	 * Ajoute le disjoncteur {d} dans la boîte à la position (colonne,ligne)
+	 * Ajoute le disjoncteur {d} dans la boÃ®te Ã  la position (colonne,ligne)
 	 * 
 	 * @param colonne
 	 * @param ligne
@@ -203,7 +203,7 @@ public class Boite implements Serializable {
 	}
 
 	/**
-	 * ajoute une demande au disjoncteur à la position i,j de la boîte
+	 * ajoute une demande au disjoncteur Ã  la position i,j de la boÃ®te
 	 * @param i:colonne
 	 * @param j:ligne
 	 * @param demande
@@ -214,7 +214,7 @@ public class Boite implements Serializable {
 
 	/**
 	 * retire une puissance de la liste de demande du disjoncteur
-	 * à la position i,j.
+	 * Ã  la position i,j.
 	 * @param i:colonne
 	 * @param j:ligne
 	 * @param demande
@@ -225,7 +225,7 @@ public class Boite implements Serializable {
 
 	/**
 	 * 
-	 * @return le nombre de disjoncteurs total de la boîte
+	 * @return le nombre de disjoncteurs total de la boÃ®te
 	 */
 	public int getNbDisjoncteurs() {
 		return this.nbDisjoncteurs;
@@ -241,7 +241,7 @@ public class Boite implements Serializable {
 
 	/**
 	 * 
-	 * @return nombre de disjoncteur Entrée (Tension = 240V)
+	 * @return nombre de disjoncteur EntrÃ©e (Tension = 240V)
 	 */
 	public int getNbDisjoncteursEntree() {
 		return this.nbDisjoncteurs - this.nbDisjoncteursPhase;
@@ -251,7 +251,7 @@ public class Boite implements Serializable {
 	 * 
 	 * @param colonne
 	 * @param ligne
-	 * @return true s'il n'y a pas de disjoncteur à cette position
+	 * @return true s'il n'y a pas de disjoncteur Ã  cette position
 	 */
 	public boolean getEmplacementEstVide(int colonne, int ligne) {
 

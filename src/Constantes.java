@@ -1,10 +1,10 @@
 import java.awt.Color;
 
 /**
- * Contient les déclarations de constantes globales pour le projet des 
+ * Contient les dÃ©clarations de constantes globales pour le projet des 
  * disjoncteurs.
  * 
- * @author Pierre Bélisle (copyright 2016)
+ * @author Pierre BÃ©lisle (copyright 2016)
  * @version A2016
  */
 public class Constantes {
@@ -28,9 +28,9 @@ public class Constantes {
 		OPT_AJOUTER_APPAREIL = "Ajouter -Retirer une demande";
 	
 	public static final String 
-		OPT_SAUVEGARDER= "Sauvegarder une boîte";
+		OPT_SAUVEGARDER= "Sauvegarder une boÃ®te";
 	
-	public static final String OPT_RECUPERER= "Récupérer une boîte";
+	public static final String OPT_RECUPERER= "RÃ©cupÃ©rer une boÃ®te";
 	
 	public static final String OPT_QUITTER = "Quitter";
 
